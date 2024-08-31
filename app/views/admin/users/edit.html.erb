@@ -1,0 +1,52 @@
+<h2>ユーザー編集</h2>
+
+<% if @user.errors.any? %>
+  <%= @user.errors.count %>件エラーが発生しました
+  <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @user, url: admin_user_path(@user.id) ,method: :put do |f| %>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name_kana %><br />
+    <%= f.text_field :last_name_kana %>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name_kana %><br />
+    <%= f.text_field :first_name_kana %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name %>
+  </div>
+
+  <div class="field">
+    <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+  </div>
+
+  <div class="field">
+  <%= f.check_box :is_admin, {}, "true", "false" %>
+  <%= label_tag :is_admin, "管理者権限を付与する" %>
+  </div>
+  <%= f.submit "更新" %>
+
+<% end %>
+
+<%= link_to "退会", admin_user_path(@user.id), method: :delete %>
+
+<%= link_to "戻る", admin_user_path(@user.id), method: :get %>

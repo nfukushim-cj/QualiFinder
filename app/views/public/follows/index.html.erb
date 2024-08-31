@@ -1,0 +1,11 @@
+<% @follows.each do |follow| %>
+  <div>
+    <%= link_to user_path(follow.following_user_id) do %>
+      <%= image_tag follow.user.get_profile_image, size: "200x200"%>
+    <% end %>
+    <p>ユーザー名：<%= User.find(follow.following_user_id).user_name %></p>
+    <%= form_with url: user_follows_path(follow.following_user_id), method: :delete do |f| %>
+      <%= f.submit "フォロー解除" %>
+    <% end %>
+  </div>
+<% end %>

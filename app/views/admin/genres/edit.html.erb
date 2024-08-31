@@ -1,0 +1,22 @@
+<h1>ジャンル編集フォーム</h1>
+
+<% if @genre.errors.any? %>
+  <%= @genre.errors.count %>件エラーが発生しました
+  <ul>
+    <% @genre.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @genre, url: admin_genre_path, method: :put do |f| %>
+  <h4>ツール名</h4>
+  <%= f.text_field :name %>
+
+  <div class="field">
+  <%= f.check_box :is_enable, {}, "true", "false" %>
+  <%= label_tag :is_enable, "有効" %>
+  </div>
+
+  <%= f.submit '編集' %>
+<% end %>

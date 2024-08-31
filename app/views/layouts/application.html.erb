@@ -6,11 +6,47 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://kit.fontawesome.com/206590299a.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to "概要", about_path, method: :get %>
+        </li>
+        <li>
+          <%= link_to "マイページ", user_path(current_user.id), method: :get %>
+        </li>
+        <li>
+          <%= link_to "投稿一覧", posts_path, method: :get %>
+        </li>
+        <li>
+          <%= link_to "下書き一覧", draft_path, method: :get %>
+        </li>
+        <li>
+          <%= link_to "フォロー一覧", follows_path, method: :get %>
+        </li>
+        <li>
+          <%= link_to "新規投稿", new_post_path, method: :get %>
+        </li>
+        <li>
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "新規登録", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+      <% end %>
+    </header>
+    <% flash.each do |message_type, message| %>
+      <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,21 @@
+<h1>詳細</h1>
+<%= form_with model: @post do |f| %>
+  <h4>ツール名</h4>
+  <%= @post.tool_name %>
+  <h4>説明</h4>
+  <%= @post.tool_description %>
+  <h4>画像</h4>
+  <%= image_tag @post.get_image, size: "200x200"%>
+  <h4>ジャンル</h4>
+  <%=Genre.find(@post.genre_id).name %>
+  <h4>資格名</h4>
+  <%= @post.qualification_name %>
+  <h4>URL</h4>
+  <%= @post.url %>
+
+  <%= link_to "編集", edit_post_path, method: :get %>
+
+  <% if @post.user == current_user %>
+    <%= link_to "削除", post_path(@post.id), method: :delete, data: {confirm: "削除しますか？"} %>
+  <% end %>
+<% end %>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - QualiFinder</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+    <% if admin_signed_in? %>
+        <li>
+          <%= link_to 'ユーザー一覧', admin_users_path, method: :get %>
+        </li>
+        <li>
+          <%= link_to 'ジャンル一覧', admin_genres_path, method: :get %>
+        </li>
+        <li>
+          <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
+        </li>
+        <li>
+          <%= link_to "ユーザーサイトへ", root_path %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "ユーザーサイト", root_path %>
+        </li>
+        <li>
+          <%= link_to "ログイン", new_user_session_path %>
+        </li>
+      <% end %>
+  <%= yield %>
+</body>
+</html>

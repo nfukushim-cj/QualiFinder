@@ -1,0 +1,11 @@
+<h1>全ジャンル一覧</h1>
+<%= link_to "新規登録" , new_admin_genre_path, method: :get %>
+<ul>
+  <% @genre.each do |genre| %>
+      <li>
+        <%= genre.name %>
+        <%= link_to "編集" , edit_admin_genre_path(genre.id), method: :get %>
+        <%= link_to "削除" , admin_genre_path(genre.id), method: :delete, data: {confirm: "削除しますか？"}  %>
+      </li>
+  <% end %>
+</ul>

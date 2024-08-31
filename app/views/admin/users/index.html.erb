@@ -1,0 +1,8 @@
+<h1>全ユーザ一覧</h1>
+<ul>
+  <% @user.each do |user| %>
+      <li>
+        <%= link_to user.last_name+user.first_name , admin_user_path(user.id), method: :get %> : <%= user.email %>
+      </li>
+  <% end %>
+</ul>
