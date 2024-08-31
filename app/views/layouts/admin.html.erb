@@ -23,10 +23,10 @@
         </li>
       <% else %>
         <li>
-          <%= link_to "ユーザーサイト", root_path %>
+          <%= link_to "ユーザーサイトへ", root_path %>
         </li>
         <li>
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "ログイン", admin_session_path %>
         </li>
       <% end %>
   <%= yield %>

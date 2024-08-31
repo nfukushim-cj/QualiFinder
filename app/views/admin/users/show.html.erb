@@ -8,14 +8,11 @@
 <% end %>
 <% @posts.each do |post| %>
   <div>
-    <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image, size: "200x200"%>
-    <% end %>
+    <%= image_tag post.get_image, size: "200x200"%>
     <p>ツール名：<%= post.tool_name %></p>
     <p>説明：<%= post.tool_description %></p>
     <p>資格名：<%= post.qualification_name %></p>
     <p>ユーザー名：<%= link_to post.user.user_name, admin_user_path(post.user.id) %></p>
-    <p>削除：<%= link_to post.user.user_name, admin_user_path(post.user.id) %></p>
   </div>
 <% end %>
 <%= link_to "戻る", admin_users_path, method: :get %>
